@@ -1,5 +1,7 @@
 package Services;
 
+import Exceptions.InvalidPaginationArguments;
+
 public class PaginationService {
 
     /**
@@ -16,7 +18,8 @@ public class PaginationService {
                                    Integer totalRecords,
                                    Integer pageSize,
                                    Integer boundaryPages,
-                                   Integer aroundPages) {
+                                   Integer aroundPages) throws InvalidPaginationArguments {
+
 
 
         return null;

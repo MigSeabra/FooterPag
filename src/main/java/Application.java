@@ -1,3 +1,4 @@
+import Exceptions.InvalidPaginationArguments;
 import Services.PaginationService;
 
 public class Application {
@@ -35,8 +36,8 @@ public class Application {
                     aroundPages);
 
             System.out.println(footerPag);
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid input argument, please try again");
+        } catch (NumberFormatException | InvalidPaginationArguments e) {
+            System.out.println("Invalid input argument: " + e.getMessage());
         }
     }
 }
