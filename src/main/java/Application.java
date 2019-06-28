@@ -4,9 +4,9 @@ import Services.PaginationService;
 public class Application {
 
     /**
-     * Allows Pagination Service footerPagination to be run
+     * Allows Pagination Service footerPagination to run
      * as a script by accepting its input parameters
-     * @param args Must contain the following input parameters:
+     * @param args Must contain the following ordered input parameters:
      * - currentpage: user current page;
      * - totalrecords: total records on list;
      * - pagesize: records per page
