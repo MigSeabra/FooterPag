@@ -29,7 +29,11 @@ public class PaginationService {
         int totalPages = (int)Math.ceil((double)(totalRecords)/pageSize);
 
         String resp = pagBeforeCurrentPage(currentPage, boundaryPages, aroundPages);
-        resp = resp + currentPage.toString() + " " + pagAfterCurrentPage(currentPage, boundaryPages, aroundPages, totalPages);
+        resp = resp + currentPage.toString();
+        String afterCurrPage = pagAfterCurrentPage(currentPage, boundaryPages, aroundPages, totalPages);
+        if (!afterCurrPage.isEmpty()) {
+            resp = resp + " " + afterCurrPage;
+        }
 
         return resp;
     }
