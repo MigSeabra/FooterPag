@@ -2,6 +2,9 @@ package Services;
 
 import Exceptions.InvalidPaginationArguments;
 
+/**
+ * Data pagination related service
+ */
 public class PaginationService {
 
     /**
@@ -71,7 +74,7 @@ public class PaginationService {
      */
     private String pagBeforeCurrentPage(Integer currentPage, Integer boundaryPages, Integer aroundPages) {
 
-        StringBuilder resp = new StringBuilder(currentPage - 1);
+        StringBuilder resp = new StringBuilder(boundaryPages + 1 + aroundPages);
         resp.append(1);
         resp.append(" ");
 
@@ -111,7 +114,7 @@ public class PaginationService {
      * @return footer pagination String after currentPage (without currentPage)
      */
     private String pagAfterCurrentPage(Integer currentPage, Integer boundaryPages, Integer aroundPages, Integer totalPages) {
-        StringBuilder resp = new StringBuilder(totalPages - currentPage);
+        StringBuilder resp = new StringBuilder(boundaryPages + 1 + aroundPages);
 
         if (currentPage <= (totalPages - boundaryPages - aroundPages)) {
             //aroundPages
