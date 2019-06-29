@@ -61,8 +61,6 @@ public class PaginationService {
         if (currentPage > totalPages) {
             throw new InvalidPaginationArguments("currentPage must be lower than total pages number");
         }
-
-
     }
 
     /**
