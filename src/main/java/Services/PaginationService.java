@@ -29,7 +29,7 @@ public class PaginationService {
         int totalPages = (int)Math.ceil((double)(totalRecords)/pageSize);
 
         String resp = pagBeforeCurrentPage(currentPage, boundaryPages, aroundPages);
-        resp = resp + currentPage.toString() + pagAfterCurrentPage(currentPage, boundaryPages, aroundPages, totalPages);
+        resp = resp + currentPage.toString() + " " + pagAfterCurrentPage(currentPage, boundaryPages, aroundPages, totalPages);
 
         return resp;
     }
@@ -62,7 +62,7 @@ public class PaginationService {
             throw new InvalidPaginationArguments("currentPage must be lower than total pages number");
         }
 
-        //validate boundaries and around
+
     }
 
     /**
@@ -128,7 +128,7 @@ public class PaginationService {
                 resp.append(" ");
             }
             //boundaryPages
-            for (Integer i = (totalPages - aroundPages + 1); i <= totalPages; i++) {
+            for (Integer i = (totalPages - boundaryPages + 1); i <= totalPages; i++) {
                 resp.append(i);
                 resp.append(" ");
             }
