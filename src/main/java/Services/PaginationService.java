@@ -137,8 +137,9 @@ public class PaginationService {
                 resp.append(" ");
             }
         }
-
-        resp.deleteCharAt(resp.length() - 1);
+        if (resp.length() > 0) {
+            resp.deleteCharAt(resp.length() - 1);
+        }
 
         return resp.toString();
     }
