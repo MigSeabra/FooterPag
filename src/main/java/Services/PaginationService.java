@@ -1,7 +1,6 @@
 package Services;
 
 import Exceptions.InvalidPaginationArguments;
-import Helpers.PaginationServiceHelper;
 
 public class PaginationService {
 
@@ -26,9 +25,8 @@ public class PaginationService {
 
         int totalPages = (int)Math.ceil((double)(totalRecords)/pageSize);
 
-        String resp = PaginationServiceHelper.pagBeforeCurrentPage(currentPage, boundaryPages, aroundPages);
-
-
+        String resp = pagBeforeCurrentPage(currentPage, boundaryPages, aroundPages);
+        resp = resp + currentPage.toString() + pagAfterCurrentPage(currentPage, boundaryPages, aroundPages, totalPages);
 
         return resp;
     }
@@ -62,5 +60,85 @@ public class PaginationService {
         }
 
         //validate boundaries and around
+    }
+
+    /**
+     * Computes a footer pagination String before currentPage to be displayed at front-end
+     * @param currentPage user current page
+     * @param boundaryPages number of pages after the first page and before the last one
+     * @param aroundPages number of pages before and after current page
+     * @return footer pagination String before currentPage (without currentPage)
+     */
+    private String pagBeforeCurrentPage(Integer currentPage, Integer boundaryPages, Integer aroundPages) {
+
+        StringBuilder resp = new StringBuilder(currentPage - 1);
+        resp.append(1);
+        resp.append(" ");
+
+        if (currentPage >= (boundaryPages + aroundPages + 1)) {
+            //boundaryPages
+            for (int i = 2; i <= boundaryPages; i++) {
+                resp.append(i);
+                resp.append(" ");
+            }
+            //...
+            if (currentPage > (boundaryPages + aroundPages + 1)) {
+                resp.append("\u2026");
+                resp.append(" ");
+            }
+            //aroundPages
+            for (Integer i = (currentPage - aroundPages); i < currentPage; i++) {
+                resp.append(i);
+                resp.append(" ");
+            }
+        } else {
+            //boundaryPages interleaved with aroundPages
+            for (Integer i = 2; i < currentPage; i++) {
+                resp.append(i);
+                resp.append(" ");
+            }
+        }
+
+        return resp.toString();
+    }
+
+    /**
+     * Computes a footer pagination String after currentPage to be displayed at front-end
+     * @param currentPage user current page
+     * @param boundaryPages number of pages after the first page and before the last one
+     * @param aroundPages number of pages before and after current page
+     * @param totalPages total number of pages
+     * @return footer pagination String after currentPage (without currentPage)
+     */
+    private String pagAfterCurrentPage(Integer currentPage, Integer boundaryPages, Integer aroundPages, Integer totalPages) {
+        StringBuilder resp = new StringBuilder(totalPages - currentPage);
+
+        if (currentPage <= (totalPages - boundaryPages - aroundPages)) {
+            //aroundPages
+            for (int i = (currentPage + 1); i <= (currentPage + aroundPages); i++) {
+                resp.append(i);
+                resp.append(" ");
+            }
+            //...
+            if (currentPage < (totalPages - boundaryPages - aroundPages)) {
+                resp.append("\u2026");
+                resp.append(" ");
+            }
+            //boundaryPages
+            for (Integer i = (totalPages - aroundPages + 1); i <= totalPages; i++) {
+                resp.append(i);
+                resp.append(" ");
+            }
+        } else {
+            //boundaryPages interleaved with aroundPages
+            for (Integer i = (currentPage + 1); i <= totalPages; i++) {
+                resp.append(i);
+                resp.append(" ");
+            }
+        }
+
+        resp.deleteCharAt(resp.length() - 1);
+
+        return resp.toString();
     }
 }
