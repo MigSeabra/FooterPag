@@ -139,7 +139,7 @@ public class PaginationService {
                 resp.append(" ");
             }
             //right boundaryPages
-            int begin = currPageInBound ? (boundaryPages + 1) : (totalPages - boundaryPages + 1);
+            int begin = boundaryPages > (totalPages - boundaryPages) ? (boundaryPages + 1) : (totalPages - boundaryPages + 1);
             for (int i = begin; i <= totalPages; i++) {
                 resp.append(i);
                 resp.append(" ");
