@@ -215,5 +215,80 @@ public class PaginationService {
         Assert.assertEquals("1 \u2026 3 4 5 6 7 8 9", result);
     }
 
+    @Test
+    public void varags20Success() throws InvalidPaginationArguments {
+        String result = pagService.footerPagination(9, 90, 10, 4, 1);
 
+        System.out.println("varags20Success test:");
+        System.out.println("- Expectation: 1 2 3 4 \u2026 6 7 8 9");
+        System.out.println("- Result: " + result);
+
+        Assert.assertEquals("1 2 3 4 \u2026 6 7 8 9", result);
+    }
+
+    @Test
+    public void varags21Success() throws InvalidPaginationArguments {
+        String result = pagService.footerPagination(8, 80, 10, 4, 1);
+
+        System.out.println("varags21Success test:");
+        System.out.println("- Expectation: 1 2 3 4 5 6 7 8");
+        System.out.println("- Result: " + result);
+
+        Assert.assertEquals("1 2 3 4 5 6 7 8", result);
+    }
+
+    @Test
+    public void varags22Success() throws InvalidPaginationArguments {
+        String result = pagService.footerPagination(6, 60, 10, 4, 1);
+
+        System.out.println("varags22Success test:");
+        System.out.println("- Expectation: 1 2 3 4 5 6");
+        System.out.println("- Result: " + result);
+
+        Assert.assertEquals("1 2 3 4 5 6", result);
+    }
+
+    @Test
+    public void varags23Success() throws InvalidPaginationArguments {
+        String result = pagService.footerPagination(6, 90, 10, 4, 0);
+
+        System.out.println("varags23Success test:");
+        System.out.println("- Expectation: 1 2 3 4 \u2026 6 7 8 9");
+        System.out.println("- Result: " + result);
+
+        Assert.assertEquals("1 2 3 4 \u2026 6 7 8 9", result);
+    }
+
+    @Test
+    public void varags24Success() throws InvalidPaginationArguments {
+        String result = pagService.footerPagination(7, 90, 10, 4, 1);
+
+        System.out.println("varags24Success test:");
+        System.out.println("- Expectation: 1 2 3 4 \u2026 6 7 8 9");
+        System.out.println("- Result: " + result);
+
+        Assert.assertEquals("1 2 3 4 \u2026 6 7 8 9", result);
+    }
+
+    @Test
+    public void varags25Success() throws InvalidPaginationArguments {
+        String result = pagService.footerPagination(6, 110, 10, 4, 0);
+
+        System.out.println("varags25Success test:");
+        System.out.println("- Expectation: 1 2 3 4 \u2026 6 \u2026 8 9 10 11");
+        System.out.println("- Result: " + result);
+
+        Assert.assertEquals("1 2 3 4 \u2026 6 \u2026 8 9 10 11", result);
+    }
+
+    @Test
+    public void varags26Success() throws InvalidPaginationArguments {
+        String result = pagService.footerPagination(5, 90, 10, 4, 0);
+
+        System.out.println("varags26Success test:");
+        System.out.println("- Expectation: 1 2 3 4 5 6 7 8 9");
+        System.out.println("- Result: " + result);
+
+        Assert.assertEquals("1 2 3 4 5 6 7 8 9", result);
+    }
 }

@@ -86,23 +86,28 @@ public class PaginationService {
         resp.append(" ");
 
         if (currentPage >= (boundaryPages + aroundPages + 1)) {
-            //boundaryPages
-            for (int i = 2; i <= boundaryPages; i++) {
+            //left boundaryPages
+            int end = boundaryPages > (totalPages - boundaryPages) ? (totalPages - boundaryPages) : boundaryPages;
+            for (int i = 2; i <= end; i++) {
                 resp.append(i);
                 resp.append(" ");
             }
+            //check if currentPage with aroundPages is inside right boundary pages
+            boolean currPageInBound = (currentPage - aroundPages) > (totalPages - boundaryPages + 1);
             //...
-            if (currentPage > (boundaryPages + aroundPages + 1)) {
+            if ((currPageInBound && boundaryPages < (totalPages - boundaryPages))
+                    || (!currPageInBound && currentPage > (boundaryPages + aroundPages + 1))) {
                 resp.append("\u2026");
                 resp.append(" ");
             }
-            //aroundPages
-            for (int i = (currentPage - aroundPages); i < currentPage; i++) {
+            //right boundaryPages or aroundPages
+            int begin = currPageInBound ? (totalPages - boundaryPages + 1) : (currentPage - aroundPages);
+            for (int i = begin; i < currentPage; i++) {
                 resp.append(i);
                 resp.append(" ");
             }
         } else {
-            //boundaryPages interleaved with aroundPages
+            //left boundaryPages interleaved with aroundPages
             for (int i = 2; i < currentPage; i++) {
                 resp.append(i);
                 resp.append(" ");
