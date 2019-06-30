@@ -124,19 +124,23 @@ public class PaginationService {
         StringBuilder resp = new StringBuilder(boundaryPages + 1 + aroundPages);
 
         if (currentPage <= (totalPages - boundaryPages - aroundPages)) {
-            int end = (currentPage + aroundPages) < boundaryPages ? boundaryPages : (currentPage + aroundPages);
+            //check if currentPage is inside left boundary pages
+            boolean currPageInBound = (currentPage + aroundPages) < boundaryPages;
             //left boundaryPages or aroundPages
+            int end = currPageInBound ? boundaryPages : (currentPage + aroundPages);
             for (int i = (currentPage + 1); i <= end; i++) {
                 resp.append(i);
                 resp.append(" ");
             }
             //...
-            if (currentPage < (totalPages - boundaryPages - aroundPages)) {
+            if ((currPageInBound && boundaryPages < (totalPages - boundaryPages)) ||
+                    (!currPageInBound && currentPage < (totalPages - boundaryPages - aroundPages))) {
                 resp.append("\u2026");
                 resp.append(" ");
             }
             //right boundaryPages
-            for (Integer i = (totalPages - boundaryPages + 1); i <= totalPages; i++) {
+            int begin = currPageInBound ? (boundaryPages + 1) : (totalPages - boundaryPages + 1);
+            for (Integer i = begin; i <= totalPages; i++) {
                 resp.append(i);
                 resp.append(" ");
             }
