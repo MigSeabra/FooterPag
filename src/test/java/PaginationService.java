@@ -151,20 +151,9 @@ public class PaginationService {
 
     @Test
     public void varags14Success() throws InvalidPaginationArguments {
-        String result = pagService.footerPagination(1, 79, 10, 3, 1);
-
-        System.out.println("varags14Success test:");
-        System.out.println("- Expectation: 1 2 3 \u2026 6 7 8");
-        System.out.println("- Result: " + result);
-
-        Assert.assertEquals("1 2 3 \u2026 6 7 8", result);
-    }
-
-    @Test
-    public void varags15Success() throws InvalidPaginationArguments {
         String result = pagService.footerPagination(1, 69, 10, 4, 1);
 
-        System.out.println("varags15Success test:");
+        System.out.println("varags14Success test:");
         System.out.println("- Expectation: 1 2 3 4 5 6 7");
         System.out.println("- Result: " + result);
 
@@ -172,10 +161,10 @@ public class PaginationService {
     }
 
     @Test
-    public void varags16Success() throws InvalidPaginationArguments {
+    public void varags15Success() throws InvalidPaginationArguments {
         String result = pagService.footerPagination(1, 100, 10, 4, 1);
 
-        System.out.println("varags16Success test:");
+        System.out.println("varags15Success test:");
         System.out.println("- Expectation: 1 2 3 4 \u2026 7 8 9 10");
         System.out.println("- Result: " + result);
 
@@ -183,10 +172,10 @@ public class PaginationService {
     }
 
     @Test
-    public void varags17Success() throws InvalidPaginationArguments {
+    public void varags16Success() throws InvalidPaginationArguments {
         String result = pagService.footerPagination(1, 40, 10, 4, 7);
 
-        System.out.println("varags17Success test:");
+        System.out.println("varags16Success test:");
         System.out.println("- Expectation: 1 2 3 4");
         System.out.println("- Result: " + result);
 
@@ -194,10 +183,10 @@ public class PaginationService {
     }
 
     @Test
-    public void varags18Success() throws InvalidPaginationArguments {
+    public void varags17Success() throws InvalidPaginationArguments {
         String result = pagService.footerPagination(5, 90, 10, 4, 1);
 
-        System.out.println("varags18Success test:");
+        System.out.println("varags17Success test:");
         System.out.println("- Expectation: 1 2 3 4 5 6 7 8 9");
         System.out.println("- Result: " + result);
 
@@ -205,10 +194,10 @@ public class PaginationService {
     }
 
     @Test
-    public void varags19Success() throws InvalidPaginationArguments {
+    public void varags18Success() throws InvalidPaginationArguments {
         String result = pagService.footerPagination(7, 90, 10, 1, 4);
 
-        System.out.println("varags19Success test:");
+        System.out.println("varags18Success test:");
         System.out.println("- Expectation: 1 \u2026 3 4 5 6 7 8 9");
         System.out.println("- Result: " + result);
 
@@ -216,10 +205,10 @@ public class PaginationService {
     }
 
     @Test
-    public void varags20Success() throws InvalidPaginationArguments {
+    public void varags19Success() throws InvalidPaginationArguments {
         String result = pagService.footerPagination(9, 90, 10, 4, 1);
 
-        System.out.println("varags20Success test:");
+        System.out.println("varags19Success test:");
         System.out.println("- Expectation: 1 2 3 4 \u2026 6 7 8 9");
         System.out.println("- Result: " + result);
 
@@ -227,10 +216,10 @@ public class PaginationService {
     }
 
     @Test
-    public void varags21Success() throws InvalidPaginationArguments {
+    public void varags20Success() throws InvalidPaginationArguments {
         String result = pagService.footerPagination(8, 80, 10, 4, 1);
 
-        System.out.println("varags21Success test:");
+        System.out.println("varags20Success test:");
         System.out.println("- Expectation: 1 2 3 4 5 6 7 8");
         System.out.println("- Result: " + result);
 
@@ -238,10 +227,10 @@ public class PaginationService {
     }
 
     @Test
-    public void varags22Success() throws InvalidPaginationArguments {
+    public void varags21Success() throws InvalidPaginationArguments {
         String result = pagService.footerPagination(6, 60, 10, 4, 1);
 
-        System.out.println("varags22Success test:");
+        System.out.println("varags21Success test:");
         System.out.println("- Expectation: 1 2 3 4 5 6");
         System.out.println("- Result: " + result);
 
@@ -249,8 +238,19 @@ public class PaginationService {
     }
 
     @Test
-    public void varags23Success() throws InvalidPaginationArguments {
+    public void varags22Success() throws InvalidPaginationArguments {
         String result = pagService.footerPagination(6, 90, 10, 4, 0);
+
+        System.out.println("varags22Success test:");
+        System.out.println("- Expectation: 1 2 3 4 \u2026 6 7 8 9");
+        System.out.println("- Result: " + result);
+
+        Assert.assertEquals("1 2 3 4 \u2026 6 7 8 9", result);
+    }
+
+    @Test
+    public void varags23Success() throws InvalidPaginationArguments {
+        String result = pagService.footerPagination(7, 90, 10, 4, 1);
 
         System.out.println("varags23Success test:");
         System.out.println("- Expectation: 1 2 3 4 \u2026 6 7 8 9");
@@ -261,20 +261,9 @@ public class PaginationService {
 
     @Test
     public void varags24Success() throws InvalidPaginationArguments {
-        String result = pagService.footerPagination(7, 90, 10, 4, 1);
-
-        System.out.println("varags24Success test:");
-        System.out.println("- Expectation: 1 2 3 4 \u2026 6 7 8 9");
-        System.out.println("- Result: " + result);
-
-        Assert.assertEquals("1 2 3 4 \u2026 6 7 8 9", result);
-    }
-
-    @Test
-    public void varags25Success() throws InvalidPaginationArguments {
         String result = pagService.footerPagination(6, 110, 10, 4, 0);
 
-        System.out.println("varags25Success test:");
+        System.out.println("varags24Success test:");
         System.out.println("- Expectation: 1 2 3 4 \u2026 6 \u2026 8 9 10 11");
         System.out.println("- Result: " + result);
 
@@ -282,10 +271,10 @@ public class PaginationService {
     }
 
     @Test
-    public void varags26Success() throws InvalidPaginationArguments {
+    public void varags25Success() throws InvalidPaginationArguments {
         String result = pagService.footerPagination(5, 90, 10, 4, 0);
 
-        System.out.println("varags26Success test:");
+        System.out.println("varags25Success test:");
         System.out.println("- Expectation: 1 2 3 4 5 6 7 8 9");
         System.out.println("- Result: " + result);
 
