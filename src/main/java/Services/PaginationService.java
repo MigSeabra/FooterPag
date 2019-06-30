@@ -31,9 +31,7 @@ public class PaginationService {
         String resp = pagBeforeCurrentPage(currentPage, boundaryPages, aroundPages, totalPages);
         resp = resp + currentPage.toString();
         String afterCurrPage = pagAfterCurrentPage(currentPage, boundaryPages, aroundPages, totalPages);
-        if (!afterCurrPage.isEmpty()) {
-            resp = resp + " " + afterCurrPage;
-        }
+        resp = afterCurrPage.isEmpty() ? resp : resp + " " + afterCurrPage;
 
         return resp;
     }

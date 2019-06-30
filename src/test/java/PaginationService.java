@@ -1,10 +1,15 @@
 import Exceptions.InvalidPaginationArguments;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class PaginationService {
 
     private Services.PaginationService pagService = new Services.PaginationService();
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void varags1Success() throws InvalidPaginationArguments {
@@ -279,5 +284,60 @@ public class PaginationService {
         System.out.println("- Result: " + result);
 
         Assert.assertEquals("1 2 3 4 5 6 7 8 9", result);
+    }
+
+    @Test
+    public void currentPageNullFail() throws InvalidPaginationArguments {
+        thrown.expect(InvalidPaginationArguments.class);
+        thrown.expectMessage("one argument is null");
+
+        System.out.println("currentPageNullFail:");
+        System.out.println("- Exception message: one argument is null");
+
+        pagService.footerPagination(null, 90, 10, 4, 0);
+    }
+
+    @Test
+    public void currPageAndPageSizeNullFail() throws InvalidPaginationArguments {
+        thrown.expect(InvalidPaginationArguments.class);
+        thrown.expectMessage("one argument is null");
+
+        System.out.println("currPageAndPageSizeNullFail:");
+        System.out.println("- Exception message: one argument is null");
+
+        pagService.footerPagination(null, 90, null, 4, 0);
+    }
+
+    @Test
+    public void aroundPagesZeroFail() throws InvalidPaginationArguments {
+        thrown.expect(InvalidPaginationArguments.class);
+        thrown.expectMessage("negative or zero argument");
+
+        System.out.println("aroundPagesZeroFail:");
+        System.out.println("- Exception message: negative or zero argument");
+
+        pagService.footerPagination(2, 90, 12, 0, 0);
+    }
+
+    @Test
+    public void multipleNegativeValuesFail() throws InvalidPaginationArguments {
+        thrown.expect(InvalidPaginationArguments.class);
+        thrown.expectMessage("negative or zero argument");
+
+        System.out.println("multipleNegativeValuesFail:");
+        System.out.println("- Exception message: negative or zero argument");
+
+        pagService.footerPagination(-2, 90, -12, 2, 0);
+    }
+
+    @Test
+    public void currPageBiggerThanTotalPageFail() throws InvalidPaginationArguments {
+        thrown.expect(InvalidPaginationArguments.class);
+        thrown.expectMessage("currentPage - 20 must be lower than total pages number - 9");
+
+        System.out.println("currPageBiggerThanTotalPageFail:");
+        System.out.println("- Exception message: currentPage - 20 must be lower than total pages number - 9");
+
+        pagService.footerPagination(20, 90, 10, 2, 0);
     }
 }
