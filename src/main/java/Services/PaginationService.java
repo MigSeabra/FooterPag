@@ -28,7 +28,7 @@ public class PaginationService {
 
         int totalPages = (int)Math.ceil((double)(totalRecords)/pageSize);
 
-        String resp = pagBeforeCurrentPage(currentPage, boundaryPages, aroundPages);
+        String resp = pagBeforeCurrentPage(currentPage, boundaryPages, aroundPages, totalPages);
         resp = resp + currentPage.toString();
         String afterCurrPage = pagAfterCurrentPage(currentPage, boundaryPages, aroundPages, totalPages);
         if (!afterCurrPage.isEmpty()) {
@@ -74,7 +74,7 @@ public class PaginationService {
      * @param aroundPages number of pages before and after current page
      * @return footer pagination String before currentPage (without currentPage)
      */
-    private String pagBeforeCurrentPage(Integer currentPage, Integer boundaryPages, Integer aroundPages) {
+    private String pagBeforeCurrentPage(Integer currentPage, Integer boundaryPages, Integer aroundPages, Integer totalPages) {
 
         StringBuilder resp = new StringBuilder(boundaryPages + 1 + aroundPages);
 
@@ -97,13 +97,13 @@ public class PaginationService {
                 resp.append(" ");
             }
             //aroundPages
-            for (Integer i = (currentPage - aroundPages); i < currentPage; i++) {
+            for (int i = (currentPage - aroundPages); i < currentPage; i++) {
                 resp.append(i);
                 resp.append(" ");
             }
         } else {
             //boundaryPages interleaved with aroundPages
-            for (Integer i = 2; i < currentPage; i++) {
+            for (int i = 2; i < currentPage; i++) {
                 resp.append(i);
                 resp.append(" ");
             }
@@ -124,7 +124,7 @@ public class PaginationService {
         StringBuilder resp = new StringBuilder(boundaryPages + 1 + aroundPages);
 
         if (currentPage <= (totalPages - boundaryPages - aroundPages)) {
-            //check if currentPage is inside left boundary pages
+            //check if currentPage with aroundPages is inside left boundary pages
             boolean currPageInBound = (currentPage + aroundPages) < boundaryPages;
             //left boundaryPages or aroundPages
             int end = currPageInBound ? boundaryPages : (currentPage + aroundPages);
@@ -140,13 +140,13 @@ public class PaginationService {
             }
             //right boundaryPages
             int begin = currPageInBound ? (boundaryPages + 1) : (totalPages - boundaryPages + 1);
-            for (Integer i = begin; i <= totalPages; i++) {
+            for (int i = begin; i <= totalPages; i++) {
                 resp.append(i);
                 resp.append(" ");
             }
         } else {
             //right boundaryPages interleaved with aroundPages
-            for (Integer i = (currentPage + 1); i <= totalPages; i++) {
+            for (int i = (currentPage + 1); i <= totalPages; i++) {
                 resp.append(i);
                 resp.append(" ");
             }
