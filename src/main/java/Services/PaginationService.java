@@ -63,7 +63,7 @@ public class PaginationService {
 
         int totalPages = (int)Math.ceil((double)(totalRecords)/pageSize);
         if (currentPage > totalPages) {
-            throw new InvalidPaginationArguments("currentPage must be lower than total pages number");
+            throw new InvalidPaginationArguments("currentPage - " + currentPage + " must be lower than total pages number - " + totalPages);
         }
     }
 
@@ -77,6 +77,11 @@ public class PaginationService {
     private String pagBeforeCurrentPage(Integer currentPage, Integer boundaryPages, Integer aroundPages) {
 
         StringBuilder resp = new StringBuilder(boundaryPages + 1 + aroundPages);
+
+        if (currentPage == 1) {
+            return resp.toString();
+        }
+
         resp.append(1);
         resp.append(" ");
 
@@ -119,8 +124,9 @@ public class PaginationService {
         StringBuilder resp = new StringBuilder(boundaryPages + 1 + aroundPages);
 
         if (currentPage <= (totalPages - boundaryPages - aroundPages)) {
-            //aroundPages
-            for (int i = (currentPage + 1); i <= (currentPage + aroundPages); i++) {
+            int end = (currentPage + aroundPages) < boundaryPages ? boundaryPages : (currentPage + aroundPages);
+            //left boundaryPages or aroundPages
+            for (int i = (currentPage + 1); i <= end; i++) {
                 resp.append(i);
                 resp.append(" ");
             }
@@ -129,13 +135,13 @@ public class PaginationService {
                 resp.append("\u2026");
                 resp.append(" ");
             }
-            //boundaryPages
+            //right boundaryPages
             for (Integer i = (totalPages - boundaryPages + 1); i <= totalPages; i++) {
                 resp.append(i);
                 resp.append(" ");
             }
         } else {
-            //boundaryPages interleaved with aroundPages
+            //right boundaryPages interleaved with aroundPages
             for (Integer i = (currentPage + 1); i <= totalPages; i++) {
                 resp.append(i);
                 resp.append(" ");
